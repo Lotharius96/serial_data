@@ -25,12 +25,12 @@ import serial.tools.list_ports
 from matplotlib.widgets import Slider
 
 # Valores minimo, maximo y por defecto para el slider
-MINVAL, MAXVAL, VAL0 = 0.0, 60.0, 5.0
+MINVAL, MAXVAL, VAL0 = 0.0, 10.0, 5.0
 
 # Valores maximo, minimo y muestreo para el plot en el eje x
 # No arrancar en cero para evitar overflow
 XMIN_RANGE, XMAX_RANGE = 0.0, 300.0
-YMIN_RANGE, YMAX_RANGE = 0.0, 8.0
+YMIN_RANGE, YMAX_RANGE = -40.0, 40.0
 
 #Historial de tiempo
 h_time = []
@@ -101,8 +101,8 @@ def read_data():
 
 # Plot animacion
 fig = plt.figure()
-plt.suptitle(u"Diagrama T vs t de planta térmica")
-plt.grid()
+plt.suptitle(u"Diagrama de motor DC")
+plt.grid(linestyle='-', linewidth=1)
 ax = fig.add_subplot(111)
 line,  = ax.plot([], [])#, '.')
 # Adjust the subplots region to leave some space for the sliders and buttons
@@ -111,8 +111,8 @@ ax.set_xlim([XMIN_RANGE, XMAX_RANGE])
 ax.set_ylim([YMIN_RANGE, YMAX_RANGE])
 
 #plt.axis("scaled")
-ax.set_xlabel(r"$t\, / \,[s]$")
-ax.set_ylabel(r"$T\, / \,[V]$")
+ax.set_xlabel(r"$t\, / \,[ms]$")
+ax.set_ylabel(r"$w\, / \,[rad/s]$")
 
 # Define an axes area and draw a slider in it
 amp_slider_ax  = fig.add_axes([0.15, 0.05, 0.7, 0.05])
